@@ -1,0 +1,3 @@
+https://github.com/Kaloer/Android-File-Picker-Activity
+https://github.com/GautamGupta/Simple-Android-OCR
+https://github.com/rmtheis/android-ocr
