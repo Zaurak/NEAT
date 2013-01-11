@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <Button
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:id="@+id/start_file_picker_button"
+    	android:text="Select a file to perform OCR on"
+    	/>
+    <TextView
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="Recognized text"
+    	android:textStyle="bold"
+    	android:textColor="#fff"
+    	android:textSize="24sp"
+    	/>
+    <TextView
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:id="@+id/file_path_text_view"
+    	android:text="No file has been selected"
+    	android:textSize="18sp"
+    	/>
+</LinearLayout>
