@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".FingerDraw"
-            android:label="@string/title_activity_finger_draw" >
+            android:label="@string/title_activity_finger_draw"	
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

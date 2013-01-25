@@ -210,6 +210,8 @@ public class MyView extends View {
             }
         }
         private void touch_up() {
+        	mCanvas.drawPoint(mX,  mY,  mPaint); //Pour pouvoir faire de simples points
+        	
             mPath.lineTo(mX, mY);
             // commit the path to our offscreen
             mCanvas.drawPath(mPath, mPaint);
