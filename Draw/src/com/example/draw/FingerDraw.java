@@ -69,6 +69,7 @@ public class FingerDraw extends Activity {
         
         mButton.setOnClickListener(new OnClickListener() {           
 
+        	  @Override
         	  public void onClick(View v) 
         	  {
         		  ByteArrayOutputStream bytes = new ByteArrayOutputStream();
@@ -164,10 +165,9 @@ public class MyView extends View {
             }
         }
         private void touch_up() {
+        	mCanvas.drawPoint(mX,  mY,  mPaint); //Pour pouvoir faire de simples points
             mPath.lineTo(mX, mY);
-            // commit the path to our offscreen
             mCanvas.drawPath(mPath, mPaint);
-            // kill this so we don't double draw
             mPath.reset();
         }
         
@@ -188,7 +188,7 @@ public class MyView extends View {
                 case MotionEvent.ACTION_UP: //le doigt quitte l'écran
                     touch_up();
                     invalidate();
-                    break;
+                    break; 
             }
             return true;
         }

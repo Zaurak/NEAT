@@ -4,7 +4,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="5"
         android:targetSdkVersion="15" />
     
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".FingerDraw"
-            android:label="@string/title_activity_finger_draw" >
+            android:label="@string/title_activity_finger_draw"
+            android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
