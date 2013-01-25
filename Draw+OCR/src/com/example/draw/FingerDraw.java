@@ -6,12 +6,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+
+import com.googlecode.tesseract.android.TessBaseAPI;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -19,22 +23,71 @@ import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class FingerDraw extends Activity {
+	
+	public static final String DATA_PATH = Environment
+			.getExternalStorageDirectory().toString() + "/NEAT/";
+	
+	public static final String lang = "eng";
+	
+	private static final String TAG = "FingerDraw.java";
+	
 	private Paint mPaint;
 	private MyView view;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
+    	
+		String[] paths = new String[] { DATA_PATH, DATA_PATH + "tessdata/" };
+		
+		/*****  Check for NEAT directory *****/
+		for (String path : paths) {
+			File dir = new File(path);
+			if (!dir.exists()) {
+				if (!dir.mkdirs()) {
+					Log.v(TAG, "ERROR: Creation of directory " + path + " on sdcard failed");
+					return;
+				} else {
+					Log.v(TAG, "Created directory " + path + " on sdcard");
+				}
+			}
+		}
+		/***** Check for traineddata file *****/
+		if (!(new File(DATA_PATH + "tessdata/" + lang + ".traineddata")).exists()) {
+			try {
+				AssetManager assetManager = getAssets();
+				InputStream in = assetManager.open("tessdata/eng.traineddata");
+				OutputStream out = new FileOutputStream(DATA_PATH
+						+ "tessdata/eng.traineddata");
+
+				// Transfer bytes from in to out
+				byte[] buf = new byte[1024];
+				int len;
+				
+				while ((len = in.read(buf)) > 0) {
+					out.write(buf, 0, len);
+				}
+				in.close();
+				
+				out.close();
+				
+				Log.v(TAG, "Copied " + lang + " traineddata");
+			} catch (IOException e) {
+				Log.e(TAG, "Was unable to copy " + lang + " traineddata " + e.toString());
+			}
+		}
 
     	LinearLayout layout = new LinearLayout(this);
         layout.setId(R.layout.activity_finger_draw);
@@ -43,13 +96,18 @@ public class FingerDraw extends Activity {
         layout.setOrientation(LinearLayout.VERTICAL);
         
         Button mButton = new Button(this);
-        mButton.setText("Save");
+        mButton.setText("Launch OCR");
         mButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,2));
+        
+        final TextView mRecognizedText = new TextView(this);
+        mRecognizedText.setText("Recognized Text");
+        mRecognizedText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,3));
         
         view = new MyView(this);
         view.setLayoutParams(layoutParams);
         layout.addView(view);
         layout.addView(mButton);
+        layout.addView(mRecognizedText);
         
         /*Toast toast = Toast.makeText(getApplicationContext(), view.lor, 2);
         toast.show();*/
@@ -71,28 +129,16 @@ public class FingerDraw extends Activity {
 
         	  public void onClick(View v) 
         	  {
-        		  ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        		  view.mBitmap.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-        		//création d'un nouveau fichier "test.jpg" dans le fichier sdcard
-        		  File f = new File(Environment.getExternalStorageDirectory()
-        		                          + File.separator + "test.jpg");
-        		  try {
-        			//création du fichier
-            		FileOutputStream fo;
-					f.createNewFile();
-					fo = new FileOutputStream(f);
-					//écriture des bits dans le fichier
-					fo.write(bytes.toByteArray());
-
-	        	    // ferme le fichier
-	        		fo.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        		  
-        		  Toast toast = Toast.makeText(getApplicationContext(), "File saved !", 2);
-	        		toast.show();
+        		  	TessBaseAPI baseApi = new TessBaseAPI();
+					baseApi.setDebug(true);
+					baseApi.init(DATA_PATH, lang);
+					baseApi.setImage(view.mBitmap);
+					
+					String recognizedText = baseApi.getUTF8Text();
+					
+					baseApi.end();
+					
+					mRecognizedText.setText(recognizedText);
         	  }    
         	});
     }
