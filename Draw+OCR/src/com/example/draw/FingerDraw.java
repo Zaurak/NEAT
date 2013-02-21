@@ -1,33 +1,17 @@
 package com.example.draw;
 
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import com.googlecode.leptonica.android.ReadFile;
-import com.googlecode.tesseract.android.TessBaseAPI;
-
 import ocr.Ocr;
-import ocr.OcrResult;
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -36,7 +20,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class FingerDraw extends Activity {
@@ -47,9 +30,9 @@ public class FingerDraw extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
+    	Log.d("Main", "OnCreateStart");
+    	ocr = new Ocr(this);
     	
-    	ocr = new Ocr(getApplicationContext());
-
     	LinearLayout layout = new LinearLayout(this);
         layout.setId(R.layout.activity_finger_draw);
         LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1);
