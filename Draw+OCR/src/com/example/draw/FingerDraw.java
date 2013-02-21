@@ -9,7 +9,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import com.googlecode.leptonica.android.ReadFile;
 import com.googlecode.tesseract.android.TessBaseAPI;
+
+import ocr.Ocr;
+import ocr.OcrResult;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar.LayoutParams;
@@ -18,6 +22,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Bundle;
@@ -35,14 +40,7 @@ import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class FingerDraw extends Activity {
-	
-	public static final String DATA_PATH = Environment
-			.getExternalStorageDirectory().toString() + "/NEAT/";
-	
-	public static final String lang = "eng";
-	
-	private static final String TAG = "FingerDraw.java";
-	
+	Ocr ocr;
 	private Paint mPaint;
 	private MyView view;
 	
@@ -50,44 +48,7 @@ public class FingerDraw extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	
-		String[] paths = new String[] { DATA_PATH, DATA_PATH + "tessdata/" };
-		
-		/*****  Check for NEAT directory *****/
-		for (String path : paths) {
-			File dir = new File(path);
-			if (!dir.exists()) {
-				if (!dir.mkdirs()) {
-					Log.v(TAG, "ERROR: Creation of directory " + path + " on sdcard failed");
-					return;
-				} else {
-					Log.v(TAG, "Created directory " + path + " on sdcard");
-				}
-			}
-		}
-		/***** Check for traineddata file *****/
-		if (!(new File(DATA_PATH + "tessdata/" + lang + ".traineddata")).exists()) {
-			try {
-				AssetManager assetManager = getAssets();
-				InputStream in = assetManager.open("tessdata/eng.traineddata");
-				OutputStream out = new FileOutputStream(DATA_PATH
-						+ "tessdata/eng.traineddata");
-
-				// Transfer bytes from in to out
-				byte[] buf = new byte[1024];
-				int len;
-				
-				while ((len = in.read(buf)) > 0) {
-					out.write(buf, 0, len);
-				}
-				in.close();
-				
-				out.close();
-				
-				Log.v(TAG, "Copied " + lang + " traineddata");
-			} catch (IOException e) {
-				Log.e(TAG, "Was unable to copy " + lang + " traineddata " + e.toString());
-			}
-		}
+    	ocr = new Ocr(getApplicationContext());
 
     	LinearLayout layout = new LinearLayout(this);
         layout.setId(R.layout.activity_finger_draw);
@@ -119,7 +80,7 @@ public class FingerDraw extends Activity {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
-        mPaint.setColor(0xFF4858C9); //Couleur du trait
+        mPaint.setColor(Color.WHITE); //Couleur du trait
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -129,16 +90,7 @@ public class FingerDraw extends Activity {
 
         	  public void onClick(View v) 
         	  {
-        		  	TessBaseAPI baseApi = new TessBaseAPI();
-					baseApi.setDebug(true);
-					baseApi.init(DATA_PATH, lang);
-					baseApi.setImage(view.mBitmap);
-					
-					String recognizedText = baseApi.getUTF8Text();
-					
-					baseApi.end();
-					
-					mRecognizedText.setText(recognizedText);
+        		  mRecognizedText.setText(ocr.recognize(view.mBitmap));
         	  }    
         	});
     }
@@ -173,7 +125,7 @@ public class MyView extends View {
         
         @Override
         protected void onDraw(Canvas canvas) {
-            canvas.drawColor(0xFFAAAAAA);
+            canvas.drawColor(Color.BLACK);
             
             canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
             
