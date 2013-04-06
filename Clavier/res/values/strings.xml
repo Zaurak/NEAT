@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Clavier</string>
+    <string name="action_settings">Settings</string>
+    <string name="ime_name">Clavier</string>
+    <color name="black">#ff000000</color>
+    <color name="blue">#ff0000ff</color>
+    <color name="white">#ffffffff</color>
+
+</resources>
