@@ -51,8 +51,7 @@ public class Ocr {
 		ocrResult.setWordConfidences(baseApi.wordConfidences());
 		ocrResult.setMeanConfidence(baseApi.meanConfidence());
 		ocrResult.setRegionBoundingBoxes(baseApi.getRegions().getBoxRects());
-		ocrResult
-				.setTextlineBoundingBoxes(baseApi.getTextlines().getBoxRects());
+		ocrResult.setTextlineBoundingBoxes(baseApi.getTextlines().getBoxRects());
 		ocrResult.setWordBoundingBoxes(baseApi.getWords().getBoxRects());
 		ocrResult.setStripBoundingBoxes(baseApi.getStrips().getBoxRects());
 		ocrResult.setCharacterBoundingBoxes(baseApi.getCharacters()

@@ -12,7 +12,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,7 +29,6 @@ public class FingerDraw extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
-    	Log.d("Main", "OnCreateStart");
     	ocr = new Ocr(this);
     	
     	LinearLayout layout = new LinearLayout(this);
