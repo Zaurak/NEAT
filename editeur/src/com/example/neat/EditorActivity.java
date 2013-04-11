@@ -44,7 +44,7 @@ public class EditorActivity extends Activity {
         	if(intent.getStringExtra(EXTRA_FILENAME) != null) {
         		editText1.setText(/*"\'begin{}"+*/lireFichier(intent.getStringExtra(EXTRA_FILENAME))/*+"\'end{}"*/);
         	}
-        	if (intent.getStringExtra(EXTRA_NEWFILE) != null) {
+        	else {
         		editText1.setText("\\begin{}\\end{}");
         	}
         }
