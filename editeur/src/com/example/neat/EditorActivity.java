@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class EditorActivity extends Activity {
 
@@ -163,7 +164,18 @@ public class EditorActivity extends Activity {
 		case R.id.compile:
 			/*Intent intentopen = new Intent(EditorActivity.this, FileChooserActivity.class);
 			startActivity(intentopen);*/
-			RemoteCompiler.compile("Test");
+			AlertDialog builder1 = new AlertDialog.Builder(EditorActivity.this)
+		  	.setTitle("Tutorial")
+		  	.setMessage(OpenedFilePath+" / "+ OpenedFileName +" / "+ RemoteCompiler.ip_adress)
+		  	.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
+		  		@Override
+		  		public void onClick(DialogInterface dialog, int which) {
+		  			// TODO Auto-generated method stub
+		  		}
+		  	})
+		  	.show();
+			//RemoteCompiler.compile(OpenedFilePath, OpenedFileName);
+			//Toast.makeText(getBaseContext(), OpenedFilePath, 10);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
