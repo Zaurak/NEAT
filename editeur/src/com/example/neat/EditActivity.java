@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -129,8 +130,16 @@ final String EXTRA_FILENAME = "filename";
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.show:
-			Intent intentopen = new Intent(EditActivity.this, FileChooserActivity.class);
-			startActivity(intentopen);
+			// Activity open
+			Intent intent = new Intent(EditActivity.this, FileChooserActivity.class);
+						
+			// Only make image files visible
+			ArrayList<String> extensions = new ArrayList<String>();
+			extensions.add(".neat");
+			intent.putExtra(FileChooserActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS, extensions);
+						
+			// Start the activity
+			startActivity(intent);
 			return true;
 		case R.id.save:
 			AlertDialog builder = new AlertDialog.Builder(EditActivity.this)

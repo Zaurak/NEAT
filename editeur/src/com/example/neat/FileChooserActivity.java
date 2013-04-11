@@ -39,11 +39,14 @@ public class FileChooserActivity extends ListActivity {
 	public final static String EXTRA_ACCEPTED_FILE_EXTENSIONS = "accepted_file_extensions";
 	
 	/**
+	 * 
+	 */
+	private final static String EXTRA_FILENAME = "filename";
+	
+	/**
 	 * The initial directory which will be used if no directory has been sent with the intent 
 	 */
 	private final static String DEFAULT_INITIAL_DIRECTORY = Environment.getExternalStorageDirectory().getPath();
-	
-	private final static String EXTRA_FILENAME = "filename";
 	
 	protected File mDirectory;
 	protected ArrayList<File> mFiles;

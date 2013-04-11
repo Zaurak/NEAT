@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,7 +26,7 @@ import android.widget.EditText;
 public class EditorActivity extends Activity {
 	
 	 final String EXTRA_FILENAME = "filename";
-	
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +34,6 @@ public class EditorActivity extends Activity {
 		// Show the Up button in the action bar.
 		//getActionBar().setDisplayHomeAsUpEnabled(true);
 		//registerForContextMenu(findViewById(R.id.editText1));
-		
 		final EditText editText1 = (EditText)findViewById(R.id.editText1);
 		final EditText input = new EditText(this);
 		
@@ -134,8 +134,16 @@ public class EditorActivity extends Activity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.show:
-			Intent intentopen = new Intent(EditorActivity.this, FileChooserActivity.class);
-			startActivity(intentopen);
+			// Activity open
+			Intent intent = new Intent(EditorActivity.this, FileChooserActivity.class);
+					
+			// Only make image files visible
+			ArrayList<String> extensions = new ArrayList<String>();
+			extensions.add(".neat");
+			intent.putExtra(FileChooserActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS, extensions);
+					
+			// Start the activity
+			startActivity(intent);
 			return true;
 		case R.id.save:
 			AlertDialog builder = new AlertDialog.Builder(EditorActivity.this)
