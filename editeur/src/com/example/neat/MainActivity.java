@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity { 
+
+	private static final String EXTRA_NEWFILE = "newfile";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,9 @@ public class MainActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			Intent intentnew = new Intent(MainActivity.this, EditActivity.class);
+			Intent intentnew = new Intent(MainActivity.this, EditorActivity.class);
+			intentnew.putExtra(EXTRA_NEWFILE,
+					"newfile");
 			startActivity(intentnew);
 		}
 		});
