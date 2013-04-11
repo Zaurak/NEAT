@@ -14,13 +14,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.support.v4.app.NavUtils;
+import android.widget.Toast;
 import android.text.Editable;
 
 public class EditActivity extends Activity {
@@ -37,6 +39,10 @@ final String EXTRA_FILENAME = "filename";
 		
 		final EditText editText1 = (EditText)findViewById(R.id.editText1);
 		final EditText input = new EditText(this);
+		
+		editText1.setText("\'begin{}\'end{}");
+		
+		//TODO mettre balise begin/end
 		
 		Button bold = (Button)findViewById(R.id.button4);
 		bold.setOnClickListener(new OnClickListener(){
@@ -68,15 +74,6 @@ final String EXTRA_FILENAME = "filename";
 			}
 		});
 		
-		Button delete = (Button)findViewById(R.id.button7);
-		delete.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				TextChangeDelete(editText1);
-			}
-		});
 	}
 
 	/*@Override
@@ -119,16 +116,6 @@ final String EXTRA_FILENAME = "filename";
 		final EditText input = new EditText(this);
 		
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
 		case R.id.show:
 			// Activity open
 			Intent intent = new Intent(EditActivity.this, FileChooserActivity.class);
@@ -158,6 +145,10 @@ final String EXTRA_FILENAME = "filename";
 		  			// TODO Auto-generated method stub
 		  		}
 		  	}).show();
+			return true;
+		case R.id.compile:
+			/*Intent intentopen = new Intent(EditorActivity.this, FileChooserActivity.class);
+			startActivity(intentopen);*/
 			return true;
 		case R.id.bold:
 			TextBold(editText1);

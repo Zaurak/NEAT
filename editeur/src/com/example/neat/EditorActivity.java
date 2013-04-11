@@ -22,6 +22,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.text.Editable;
 
 public class EditorActivity extends Activity {
 	
@@ -39,7 +42,7 @@ public class EditorActivity extends Activity {
 		
 		Intent intent = getIntent();
         if (intent != null) {
-    	    editText1.setText(lireFichier(intent.getStringExtra(EXTRA_FILENAME)));
+    	    editText1.setText("\'begin{}"+lireFichier(intent.getStringExtra(EXTRA_FILENAME))+"\'end{}");
         }
 		
 		Button bold = (Button)findViewById(R.id.button4);
@@ -69,16 +72,6 @@ public class EditorActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				TextUnderline(editText1);
-			}
-		});
-		
-		Button delete = (Button)findViewById(R.id.button7);
-		delete.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				TextChangeDelete(editText1);
 			}
 		});
 	}
@@ -123,16 +116,6 @@ public class EditorActivity extends Activity {
 		final EditText input = new EditText(this);
 				
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
 		case R.id.show:
 			// Activity open
 			Intent intent = new Intent(EditorActivity.this, FileChooserActivity.class);
@@ -162,6 +145,10 @@ public class EditorActivity extends Activity {
 		  			// TODO Auto-generated method stub
 		  		}
 		  	}).show();
+			return true;
+		case R.id.compile:
+			/*Intent intentopen = new Intent(EditorActivity.this, FileChooserActivity.class);
+			startActivity(intentopen);*/
 			return true;
 		case R.id.bold:
 			TextBold(editText1);
