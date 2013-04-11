@@ -14,61 +14,67 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		final TextView input = new TextView(this);
 		input.setText("temp pour test");
-		
-		Button newdoc = (Button)findViewById(R.id.button3);
-		newdoc.setOnClickListener(new OnClickListener(){
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Intent intentnew = new Intent(MainActivity.this, EditActivity.class);
-			startActivity(intentnew);
-		}
+
+		Button newdoc = (Button) findViewById(R.id.button3);
+		newdoc.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intentnew = new Intent(MainActivity.this,
+						EditActivity.class);
+				startActivity(intentnew);
+			}
 		});
-		
-		Button opendoc = (Button)findViewById(R.id.button2);
-		opendoc.setOnClickListener(new OnClickListener(){
-		@Override
-		public void onClick(View v) {
-			// Activity open
-			Intent intent = new Intent(MainActivity.this, FileChooserActivity.class);
-			
-			// Only make image files visible
-			ArrayList<String> extensions = new ArrayList<String>();
-			extensions.add(".neat");
-			intent.putExtra(FileChooserActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS, extensions);
-			
-			// Start the activity
-			startActivity(intent);
-		}
+
+		Button opendoc = (Button) findViewById(R.id.button2);
+		opendoc.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// Activity open
+				Intent intent = new Intent(MainActivity.this,
+						FileChooserActivity.class);
+
+				// Only make image files visible
+				ArrayList<String> extensions = new ArrayList<String>();
+				extensions.add(".tex");
+				intent.putExtra(
+						FileChooserActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS,
+						extensions);
+
+				// Start the activity
+				startActivity(intent);
+			}
 		});
-		
-		Button tuto = (Button)findViewById(R.id.button1);
-		tuto.setOnClickListener(new OnClickListener(){
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			//activity tuto
-			//Intent intent = new Intent(MainActivity.this, EditorActivity.class);
-			//startActivity(intent);
-			AlertDialog builder = new AlertDialog.Builder(MainActivity.this)
-		  	.setTitle("Tutorial")
-		  	.setView(input)
-		  	.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
-		  		@Override
-		  		public void onClick(DialogInterface dialog, int which) {
-		  			// TODO Auto-generated method stub
-		  		}
-		  	})
-		  	.show();
-		}
+
+		Button tuto = (Button) findViewById(R.id.button1);
+		tuto.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				// activity tuto
+				// Intent intent = new Intent(MainActivity.this,
+				// EditorActivity.class);
+				// startActivity(intent);
+				AlertDialog builder = new AlertDialog.Builder(MainActivity.this)
+						.setTitle("Tutorial")
+						.setView(input)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+									}
+								}).show();
+			}
 		});
 	}
 
