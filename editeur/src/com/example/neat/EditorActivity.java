@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,12 +25,12 @@ import android.widget.EditText;
 public class EditorActivity extends Activity {
 
 	private final String EXTRA_FILENAME = "filename";
-	
+
 	/**
 	 * Name of the file opened in the Activity
 	 */
 	private String OpenedFileName;
-	
+
 	/**
 	 * Total path to the file opened in the activity
 	 */
@@ -47,7 +46,7 @@ public class EditorActivity extends Activity {
 		Intent intent = getIntent();
 		if (intent != null) {
 			String filepath = intent.getStringExtra(EXTRA_FILENAME);
-			
+
 			if (filepath != null) {
 				if (new File(filepath).isFile()) {
 					editText1.setText(/* "\'begin{}"+ */lireFichier(intent
@@ -148,7 +147,7 @@ public class EditorActivity extends Activity {
 		File monFichier = new File(nomFichier);
 
 		OpenedFileName = monFichier.getName().substring(0,
-				monFichier.getName().length()-4);
+				monFichier.getName().length() - 4);
 		OpenedFilePath = monFichier.getAbsolutePath();
 
 		if (!monFichier.exists()) {

@@ -23,19 +23,20 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		final String input = "temp pour test";
-		
-		Button newdoc = (Button)findViewById(R.id.button3);
-		newdoc.setOnClickListener(new OnClickListener(){
-		@Override
-		public void onClick(View v) {
-			Intent intentnew = new Intent(MainActivity.this, EditorActivity.class);
-			intentnew.putExtra(EXTRA_FILENAME, defaultFileName);
-			startActivity(intentnew);
-		}
+
+		Button newdoc = (Button) findViewById(R.id.button3);
+		newdoc.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intentnew = new Intent(MainActivity.this,
+						EditorActivity.class);
+				intentnew.putExtra(EXTRA_FILENAME, defaultFileName);
+				startActivity(intentnew);
+			}
 		});
-		
+
 		Button opendoc = (Button) findViewById(R.id.button2);
 		opendoc.setOnClickListener(new OnClickListener() {
 			@Override
@@ -55,23 +56,24 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-		
-		Button tuto = (Button)findViewById(R.id.button1);
-		tuto.setOnClickListener(new OnClickListener(){
-		@Override
-		public void onClick(View v) {
-			// TODO Afficher l'adresse ip du serveur
-			AlertDialog builder = new AlertDialog.Builder(MainActivity.this)
-		  	.setTitle("Tutorial")
-		  	.setMessage(input)
-		  	.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
-		  		@Override
-		  		public void onClick(DialogInterface dialog, int which) {
-		  			// TODO Auto-generated method stub
-		  		}
-		  	})
-		  	.show();
-		}
+
+		Button tuto = (Button) findViewById(R.id.button1);
+		tuto.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Afficher l'adresse ip du serveur
+				AlertDialog builder = new AlertDialog.Builder(MainActivity.this)
+						.setTitle("Tutorial")
+						.setMessage(input)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+										// TODO Auto-generated method stub
+									}
+								}).show();
+			}
 		});
 	}
 
