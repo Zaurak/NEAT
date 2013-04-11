@@ -45,7 +45,7 @@ public class EditorActivity extends Activity {
         		editText1.setText(/*"\'begin{}"+*/lireFichier(intent.getStringExtra(EXTRA_FILENAME))/*+"\'end{}"*/);
         	}
         	if (intent.getStringExtra(EXTRA_NEWFILE) != null) {
-        		editText1.setText("\'begin{}\'end{}");
+        		editText1.setText("\\begin{}\\end{}");
         	}
         }
 
@@ -159,7 +159,8 @@ public class EditorActivity extends Activity {
 	public String lireFichier(String nomFichier) {
 		String monText = "";
 		File sdLien = Environment.getExternalStorageDirectory();
-		OpenedFileName = sdLien + "/" + nomFichier;
+		OpenedFileName = sdLien + "/";
+		OpenedFileName = OpenedFileName.substring(0, OpenedFileName.length()-3);
 		Log.d("Debug", OpenedFileName);
 		File monFichier = new File(sdLien + "/" + nomFichier);
 		if (!monFichier.exists()) {

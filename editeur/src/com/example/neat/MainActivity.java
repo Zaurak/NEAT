@@ -7,14 +7,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class MainActivity extends Activity { 
+public class MainActivity extends Activity {
 
-	private static final String EXTRA_NEWFILE = "newfile";
+	private final static String EXTRA_FILENAME = "filename";
+	private final static String defaultFileName = Environment
+			.getExternalStorageDirectory().getPath() + "Test.tex";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,7 @@ public class MainActivity extends Activity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			Intent intentnew = new Intent(MainActivity.this, EditorActivity.class);
-			intentnew.putExtra(EXTRA_NEWFILE,
-					"newfile");
+			intentnew.putExtra(EXTRA_FILENAME, defaultFileName);
 			startActivity(intentnew);
 		}
 		});
