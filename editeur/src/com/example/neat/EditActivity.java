@@ -19,7 +19,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.text.Editable;
 
@@ -141,7 +140,7 @@ final String EXTRA_FILENAME = "filename";
 		  		@Override
 		  		public void onClick(DialogInterface dialog, int which) {
 		  			// TODO Auto-generated method stub
-		  			ecrireFichier(input.getText().toString(), editText1.getText().toString());
+		  			ecrireFichier(input.getText().toString() + ".tex", editText1.getText().toString());
 		  		}
 		  	})
 		  	.setNegativeButton("Go back", new DialogInterface.OnClickListener(){
@@ -169,7 +168,7 @@ final String EXTRA_FILENAME = "filename";
         File sdLien = Environment.getExternalStorageDirectory(); 
         File monFichier = new File(sdLien + "/" +nomFichier); 
         if (!monFichier.exists()) {
-               throw new RuntimeException("Fichier inéxistant dur la carte sd");
+               throw new RuntimeException("Fichier inï¿½xistant dur la carte sd");
         } 
         BufferedReader reader = null;
         try {
