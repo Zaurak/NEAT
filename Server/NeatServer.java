@@ -56,12 +56,12 @@ public class NeatServer {
 		}
 
         // Execute the compilation command
-		public void pdflatex(String dir, String file) throws IOException {
+		public void pdflatex(String dir, String name) throws IOException {
     		try {
 		        Runtime run = Runtime.getRuntime();
 		        Process proc = run.exec(
-			        "pdflatex -output-directory " + dir + " " + file + ".tex" +
-			        " 2&1> " + dir + file + ".outputLog");
+			        "pdflatex -output-directory " + dir + " " + name + ".tex" +
+			        " 2&1> " + dir + name + ".outputLog");
 		        String line;
 		        BufferedReader input = 
                    new BufferedReader(
@@ -96,7 +96,6 @@ public class NeatServer {
                     // Get the file name
                     String name = in.readLine();
 					String dir = "Files/";
-					String file = "file-" + name;
 					
 					// What action the user want to perform
 					// SEND => The server receive the .tex file
@@ -105,17 +104,18 @@ public class NeatServer {
 					if (action.compareTo("SEND") == 0) {
 					    System.out.println("Getting .TEX");
 					    transfer(sock_in, new FileOutputStream(
-					        dir + file + ".tex"));
+					        dir + name + ".tex"));
 
 					    System.out.println("Compiling .TEX");
-					    pdflatex(dir, file);
+					    pdflatex(dir, name);
                     } else {
                         System.out.println("Sending PDF");
-                        transfer(new FileInputStream(dir + file + ".pdf"), sock_out);
+                        transfer(new FileInputStream(dir + name + ".pdf"), sock_out);
                     }
 					
 					sock_in.close();
 					sock_out.close();
+					
 
 					client.close();
 				}
