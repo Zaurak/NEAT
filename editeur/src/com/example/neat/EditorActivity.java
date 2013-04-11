@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,21 +15,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.Editable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-import android.text.Editable;
-import android.util.Log;
 
 public class EditorActivity extends Activity {
 
-	final String EXTRA_FILENAME = "filename";
-	final String EXTRA_NEWFILE = "newfile";
-	private String OpenedFileName;
+	private final String EXTRA_FILENAME = "filename";
+	
+	/**
+	 * Name of the file opened in the Activity
+	 */
+	public String OpenedFileName;
+	
+	/**
+	 * Total path to the file opened in the activity
+	 */
+	public String OpenedFilePath;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +47,18 @@ public class EditorActivity extends Activity {
 		final EditText editText1 = (EditText) findViewById(R.id.editText1);
 
 		Intent intent = getIntent();
-        if (intent != null) {
-        	if(intent.getStringExtra(EXTRA_FILENAME) != null) {
-        		editText1.setText(/*"\'begin{}"+*/lireFichier(intent.getStringExtra(EXTRA_FILENAME))/*+"\'end{}"*/);
-        	}
-        	else {
-        		editText1.setText("\\begin{}\\end{}");
-        	}
-        }
+		if (intent != null) {
+			String filepath = intent.getStringExtra(EXTRA_FILENAME);
+			
+			if (filepath != null) {
+				if (new File(filepath).isFile()) {
+					editText1.setText(/* "\'begin{}"+ */lireFichier(intent
+							.getStringExtra(EXTRA_FILENAME))/* +"\'end{}" */);
+				} else {
+					editText1.setText("\\begin{}\\end{}");
+				}
+			}
+		}
 
 		Button bold = (Button) findViewById(R.id.button4);
 		bold.setOnClickListener(new OnClickListener() {
@@ -149,8 +160,10 @@ public class EditorActivity extends Activity {
 							}).show();
 			return true;
 		case R.id.compile:
-			/*Intent intentopen = new Intent(EditorActivity.this, FileChooserActivity.class);
-			startActivity(intentopen);*/
+			/*
+			 * Intent intentopen = new Intent(EditorActivity.this,
+			 * FileChooserActivity.class); startActivity(intentopen);
+			 */
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -158,11 +171,12 @@ public class EditorActivity extends Activity {
 
 	public String lireFichier(String nomFichier) {
 		String monText = "";
-		File sdLien = Environment.getExternalStorageDirectory();
-		OpenedFileName = sdLien + "/";
-		OpenedFileName = OpenedFileName.substring(0, OpenedFileName.length()-3);
-		Log.d("Debug", OpenedFileName);
-		File monFichier = new File(sdLien + "/" + nomFichier);
+		File monFichier = new File(nomFichier);
+
+		OpenedFileName = monFichier.getName().substring(0,
+				monFichier.getName().length()-4);
+		OpenedFilePath = monFichier.getAbsolutePath();
+
 		if (!monFichier.exists()) {
 			throw new RuntimeException("Fichier in�xistant dur la carte sd");
 		}

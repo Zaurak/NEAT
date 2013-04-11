@@ -159,7 +159,7 @@ public class FileChooserActivity extends ListActivity {
 											FileChooserActivity.this,
 											EditorActivity.class);
 									intentopen.putExtra(EXTRA_FILENAME,
-											newFile.getName());
+											newFile.getAbsolutePath());
 									startActivity(intentopen);
 								}
 							}).show();

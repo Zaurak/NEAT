@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
 
 	private final static String EXTRA_FILENAME = "filename";
 	private final static String defaultFileName = Environment
-			.getExternalStorageDirectory().getPath() + "Test.tex";
+			.getExternalStorageDirectory().getPath() + "/Test.tex";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
