@@ -22,10 +22,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.text.Editable;
+import android.util.Log;
 
 public class EditorActivity extends Activity {
 
 	final String EXTRA_FILENAME = "filename";
+	final String EXTRA_NEWFILE = "newfile";
+	private String OpenedFileName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,12 @@ public class EditorActivity extends Activity {
 
 		Intent intent = getIntent();
         if (intent != null) {
-    	    editText1.setText(/*"\'begin{}"+*/lireFichier(intent.getStringExtra(EXTRA_FILENAME))/*+"\'end{}"*/);
+        	if(intent.getStringExtra(EXTRA_FILENAME) != null) {
+        		editText1.setText(lireFichier(intent.getStringExtra(EXTRA_FILENAME)));
+        	}
+        	if (intent.getStringExtra(EXTRA_NEWFILE) != null) {
+        		editText1.setText("\\'begin{}\\'end{}");
+        	}
         }
 
 		Button bold = (Button) findViewById(R.id.button4);
@@ -152,6 +160,8 @@ public class EditorActivity extends Activity {
 	public String lireFichier(String nomFichier) {
 		String monText = "";
 		File sdLien = Environment.getExternalStorageDirectory();
+		OpenedFileName = sdLien + "/" + nomFichier;
+		Log.d("Debug", OpenedFileName);
 		File monFichier = new File(sdLien + "/" + nomFichier);
 		if (!monFichier.exists()) {
 			throw new RuntimeException("Fichier inexistant dur la carte sd");
