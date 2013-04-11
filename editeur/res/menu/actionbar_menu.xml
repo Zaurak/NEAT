@@ -1,0 +1,23 @@
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        
+        <item
+        android:id="@+id/show"
+        android:showAsAction="ifRoom"
+        android:title="show"/>
+    <item
+        android:id="@+id/save"
+        android:showAsAction="ifRoom"
+        android:title="save"/>
+    <item
+        android:id="@+id/bold"
+        android:showAsAction="ifRoom"
+        android:title="bold"/>
+    <item
+        android:id="@+id/italic"
+        android:showAsAction="ifRoom"
+        android:title="italic"/>
+    <item
+        android:id="@+id/underline"
+        android:showAsAction="ifRoom"
+        android:title="underline"/>
+    </menu>

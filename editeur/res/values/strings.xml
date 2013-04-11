@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">neat</string>
+    <string name="menu_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="intro">Appuyer sur Menu</string>
+    <string name="title_activity_editor">EditorActivity</string>
+    <string name="title_activity_tuto">TutoActivity</string>
+    <string name="title_activity_file_chooser">FileChooserActivity</string>
+    <string name="title_activity_edit">EditActivity</string>
+    <string name="title_activity_pop_save">PopSaveActivity</string>
+
+</resources>
