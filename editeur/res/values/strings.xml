@@ -10,5 +10,9 @@
     <string name="title_activity_file_chooser">FileChooserActivity</string>
     <string name="title_activity_edit">EditActivity</string>
     <string name="title_activity_pop_save">PopSaveActivity</string>
+    
+    <string name="str_action1">Action1</string>
+    <string name="str_action2">Action2</string>
+    <string name="str_action3">Action3</string>
 
 </resources>

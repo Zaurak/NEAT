@@ -9,6 +9,10 @@
         android:showAsAction="ifRoom"
         android:title="save"/>
     <item
+        android:id="@+id/compile"
+        android:showAsAction="ifRoom"
+        android:title="compile"/>    
+    <item
         android:id="@+id/bold"
         android:showAsAction="ifRoom"
         android:title="bold"/>
