@@ -11,10 +11,9 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,21 +31,24 @@ public class MainActivity extends Activity {
 		}
 		});
 		
-		Button opendoc = (Button)findViewById(R.id.button2);
-		opendoc.setOnClickListener(new OnClickListener(){
-		@Override
-		public void onClick(View v) {
-			// Activity open
-			Intent intent = new Intent(MainActivity.this, FileChooserActivity.class);
-			
-			// Only make image files visible
-			ArrayList<String> extensions = new ArrayList<String>();
-			extensions.add(".neat");
-			intent.putExtra(FileChooserActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS, extensions);
-			
-			// Start the activity
-			startActivity(intent);
-		}
+		Button opendoc = (Button) findViewById(R.id.button2);
+		opendoc.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// Activity open
+				Intent intent = new Intent(MainActivity.this,
+						FileChooserActivity.class);
+
+				// Only make image files visible
+				ArrayList<String> extensions = new ArrayList<String>();
+				extensions.add(".tex");
+				intent.putExtra(
+						FileChooserActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS,
+						extensions);
+
+				// Start the activity
+				startActivity(intent);
+			}
 		});
 		
 		Button tuto = (Button)findViewById(R.id.button1);
