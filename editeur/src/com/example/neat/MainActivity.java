@@ -1,16 +1,17 @@
 package com.example.neat;
 
-import android.os.Bundle;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
@@ -36,10 +37,16 @@ public class MainActivity extends Activity {
 		opendoc.setOnClickListener(new OnClickListener(){
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			//activity open
-			Intent intentopen = new Intent(MainActivity.this, FileChooserActivity.class);
-			startActivity(intentopen);
+			// Activity open
+			Intent intent = new Intent(MainActivity.this, FileChooserActivity.class);
+			
+			// Only make image files visible
+			ArrayList<String> extensions = new ArrayList<String>();
+			extensions.add(".neat");
+			intent.putExtra(FileChooserActivity.EXTRA_ACCEPTED_FILE_EXTENSIONS, extensions);
+			
+			// Start the activity
+			startActivity(intent);
 		}
 		});
 		

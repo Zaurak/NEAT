@@ -7,21 +7,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import android.os.Bundle;
-import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.os.Bundle;
+import android.os.Environment;
+import android.support.v4.app.NavUtils;
+import android.text.Editable;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -131,7 +128,7 @@ public class EditorActivity extends Activity {
 		  		@Override
 		  		public void onClick(DialogInterface dialog, int which) {
 		  			// TODO Auto-generated method stub
-		  			ecrireFichier(input.getText().toString(), editText1.getText().toString());
+		  			ecrireFichier(input.getText().toString() + ".tex", editText1.getText().toString());
 		  		}
 		  	})
 		  	.setNegativeButton("Go back", new DialogInterface.OnClickListener(){
@@ -163,7 +160,7 @@ public class EditorActivity extends Activity {
         File sdLien = Environment.getExternalStorageDirectory(); 
         File monFichier = new File(sdLien + "/" +nomFichier); 
         if (!monFichier.exists()) {
-               throw new RuntimeException("Fichier inéxistant dur la carte sd");
+               throw new RuntimeException("Fichier inï¿½xistant dur la carte sd");
         } 
         BufferedReader reader = null;
         try {
