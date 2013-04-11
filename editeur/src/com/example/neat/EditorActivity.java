@@ -30,20 +30,18 @@ public class EditorActivity extends Activity {
 	/**
 	 * Name of the file opened in the Activity
 	 */
-	public String OpenedFileName;
+	private String OpenedFileName;
 	
 	/**
 	 * Total path to the file opened in the activity
 	 */
-	public String OpenedFilePath;
+	private String OpenedFilePath;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_editor);
-		// Show the Up button in the action bar.
-		// getActionBar().setDisplayHomeAsUpEnabled(true);
-		// registerForContextMenu(findViewById(R.id.editText1));
+
 		final EditText editText1 = (EditText) findViewById(R.id.editText1);
 
 		Intent intent = getIntent();
@@ -65,7 +63,6 @@ public class EditorActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				TextBold(editText1);
 			}
 		});
@@ -75,7 +72,6 @@ public class EditorActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				TextItalic(editText1);
 			}
 		});
@@ -85,18 +81,10 @@ public class EditorActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				TextUnderline(editText1);
 			}
 		});
 	}
-
-	/*
-	 * @Override public void onCreateContextMenu(ContextMenu menu, View v,
-	 * ContextMenuInfo menuInfo) { super.onCreateContextMenu(menu, v, menuInfo);
-	 * MenuInflater inflater = getMenuInflater();
-	 * inflater.inflate(R.menu.activity_editor, menu); }
-	 */
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,15 +92,6 @@ public class EditorActivity extends Activity {
 		getMenuInflater().inflate(R.menu.actionbar_menu, menu);
 		return true;
 	}
-
-	/*
-	 * @Override public boolean onContextItemSelected(MenuItem item) { final
-	 * EditText editText1 = (EditText)findViewById(R.id.editText1); switch
-	 * (item.getItemId()) { case R.id.underline: TextUnderline(editText1);
-	 * return true; case R.id.italic: TextItalic(editText1); return true; case
-	 * R.id.underline: TextUnderline(editText1); return true; default: return
-	 * super.onContextItemSelected(item); } }
-	 */
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -144,7 +123,6 @@ public class EditorActivity extends Activity {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
-									// TODO Auto-generated method stub
 									ecrireFichier(input.getText().toString()
 											+ ".tex", editText1.getText()
 											.toString());
@@ -155,15 +133,11 @@ public class EditorActivity extends Activity {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
-									// TODO Auto-generated method stub
 								}
 							}).show();
 			return true;
 		case R.id.compile:
-			/*
-			 * Intent intentopen = new Intent(EditorActivity.this,
-			 * FileChooserActivity.class); startActivity(intentopen);
-			 */
+			// TODO Compile(OpenedFileName, OpenedFilePath);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -193,10 +167,7 @@ public class EditorActivity extends Activity {
 			reader.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} /*
-		 * finally { if (reader != null) { try { reader.close(); } catch
-		 * (IOException e) { e.printStackTrace(); } } }
-		 */
+		}
 		return monText;
 	}
 
@@ -234,22 +205,15 @@ public class EditorActivity extends Activity {
 		Editable edit = editText1.getText();
 		String selectedText = editText1.getText()
 				.subSequence(startselection, endselection).toString();
-		// edit.replace(startselection, endselection,
-		// Html.fromHtml("<i>"+selectedText+"</i>"));
+
 		if (startselection == endselection) {
 			edit.insert(startselection, "<b></b>");
 		} else if (selectedText.startsWith("<") && !selectedText.endsWith(">")) {
 			edit.insert(startselection + 3, "<b>");
-			/*
-			 * if(selectedText.endsWith(">")) { edit.insert(endselection - 4,
-			 * "</b>"); }else
-			 */edit.insert(endselection + 3, "</b>");
+			edit.insert(endselection + 3, "</b>");
 		} else if (selectedText.endsWith(">") && !selectedText.startsWith("<")) {
 			edit.insert(startselection, "<b>");
-			/*
-			 * if(selectedText.startsWith("<")) { edit.insert(endselection - 4,
-			 * "</b>"); }else
-			 */edit.insert(endselection - 1, "</b>");
+			edit.insert(endselection - 1, "</b>");
 		} else if (selectedText.startsWith("<") && selectedText.endsWith(">")) {
 			edit.insert(startselection, "<b>");
 			edit.insert(endselection + 3, "</b>");
@@ -266,22 +230,14 @@ public class EditorActivity extends Activity {
 		Editable edit = editText1.getText();
 		String selectedText = editText1.getText()
 				.subSequence(startselection, endselection).toString();
-		// edit.replace(startselection, endselection,
-		// Html.fromHtml("<i>"+selectedText+"</i>"));
 		if (startselection == endselection) {
 			edit.insert(startselection, "<i></i>");
 		} else if (selectedText.startsWith("<") && !selectedText.endsWith(">")) {
 			edit.insert(startselection + 3, "<i>");
-			/*
-			 * if(selectedText.endsWith(">")) { edit.insert(endselection - 4,
-			 * "</i>"); }else
-			 */edit.insert(endselection + 3, "</i>");
+			edit.insert(endselection + 3, "</i>");
 		} else if (selectedText.endsWith(">") && !selectedText.startsWith("<")) {
 			edit.insert(startselection, "<i>");
-			/*
-			 * if(selectedText.startsWith("<")) { edit.insert(endselection - 4,
-			 * "</b>"); }else
-			 */edit.insert(endselection - 1, "</i>");
+			edit.insert(endselection - 1, "</i>");
 		} else if (selectedText.startsWith("<") && selectedText.endsWith(">")) {
 			edit.insert(startselection, "<i>");
 			edit.insert(endselection + 3, "</i>");
@@ -298,22 +254,14 @@ public class EditorActivity extends Activity {
 		Editable edit = editText1.getText();
 		String selectedText = editText1.getText()
 				.subSequence(startselection, endselection).toString();
-		// edit.replace(startselection, endselection,
-		// Html.fromHtml("<u>"+selectedText+"</u>"));
 		if (startselection == endselection) {
 			edit.insert(startselection, "<u></u>");
 		} else if (selectedText.startsWith("<") && !selectedText.endsWith(">")) {
 			edit.insert(startselection + 3, "<u>");
-			/*
-			 * if(selectedText.endsWith(">")) { edit.insert(endselection - 4,
-			 * "</b>"); }else
-			 */edit.insert(endselection + 3, "</u>");
+			edit.insert(endselection + 3, "</u>");
 		} else if (selectedText.endsWith(">") && !selectedText.startsWith("<")) {
 			edit.insert(startselection, "<u>");
-			/*
-			 * if(selectedText.startsWith("<")) { edit.insert(endselection - 4,
-			 * "</b>"); }else
-			 */edit.insert(endselection - 1, "</u>");
+			edit.insert(endselection - 1, "</u>");
 		} else if (selectedText.startsWith("<") && selectedText.endsWith(">")) {
 			edit.insert(startselection, "<u>");
 			edit.insert(endselection + 3, "</u>");

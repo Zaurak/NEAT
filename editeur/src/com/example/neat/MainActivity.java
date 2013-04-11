@@ -30,7 +30,6 @@ public class MainActivity extends Activity {
 		newdoc.setOnClickListener(new OnClickListener(){
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			Intent intentnew = new Intent(MainActivity.this, EditorActivity.class);
 			intentnew.putExtra(EXTRA_FILENAME, defaultFileName);
 			startActivity(intentnew);
@@ -61,10 +60,7 @@ public class MainActivity extends Activity {
 		tuto.setOnClickListener(new OnClickListener(){
 		@Override
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			//activity tuto
-			//Intent intent = new Intent(MainActivity.this, EditorActivity.class);
-			//startActivity(intent);
+			// TODO Afficher l'adresse ip du serveur
 			AlertDialog builder = new AlertDialog.Builder(MainActivity.this)
 		  	.setTitle("Tutorial")
 		  	.setMessage(input)

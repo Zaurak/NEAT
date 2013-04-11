@@ -154,7 +154,6 @@ public class FileChooserActivity extends ListActivity {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
-									// TODO Auto-generated method stub
 									Intent intentopen = new Intent(
 											FileChooserActivity.this,
 											EditorActivity.class);
