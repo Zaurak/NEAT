@@ -5,39 +5,49 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/Button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_marginBottom="44dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/button2"
+        android:layout_marginTop="62dp"
         android:background="@drawable/ic_bnew"
         android:minHeight="120dip"
         android:minWidth="700dip"
-        android:text="New" />
+        android:text="Tuto" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button2"
+        android:background="@drawable/ic_bnew"
+        android:minHeight="120dip"
+        android:minWidth="700dip"
+        android:text="Settings" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_alignTop="@+id/button3"
-        android:layout_marginTop="77dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
         android:background="@drawable/ic_bnew"
         android:minHeight="120dip"
         android:minWidth="700dip"
         android:text="Open" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/button2"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="39dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/ic_bnew"
         android:minHeight="120dip"
         android:minWidth="700dip"
-        android:text="Tuto" />
+        android:text="New" />
 
 </RelativeLayout>

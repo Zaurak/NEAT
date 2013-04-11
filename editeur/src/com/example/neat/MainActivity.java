@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends Activity {
 
@@ -20,6 +21,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		final String input = "temp pour test";
+		final EditText edit = new EditText(this);
 		
 		Button newdoc = (Button)findViewById(R.id.button3);
 		newdoc.setOnClickListener(new OnClickListener(){
@@ -70,6 +72,34 @@ public class MainActivity extends Activity {
 		  	})
 		  	.show();
 		}
+		});
+		
+		Button settings = (Button)findViewById(R.id.button4);
+		tuto.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				AlertDialog builder = new AlertDialog.Builder(MainActivity.this)
+				.setTitle("Select IP")
+				.setView(edit)
+				.setPositiveButton("OK",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+								RemoteCompiler.setIp(edit.getText().toString());
+							}
+						})
+				.setNegativeButton("Go back",
+						new DialogInterface.OnClickListener() {
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								// TODO Auto-generated method stub
+							}
+						}).show();
+			}
 		});
 	}
 

@@ -143,6 +143,7 @@ public class EditorActivity extends Activity {
 		case R.id.compile:
 			/*Intent intentopen = new Intent(EditorActivity.this, FileChooserActivity.class);
 			startActivity(intentopen);*/
+			RemoteCompiler.compile("Test");
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -153,7 +154,7 @@ public class EditorActivity extends Activity {
 		File sdLien = Environment.getExternalStorageDirectory();
 		File monFichier = new File(sdLien + "/" + nomFichier);
 		if (!monFichier.exists()) {
-			throw new RuntimeException("Fichier in�xistant dur la carte sd");
+			throw new RuntimeException("Fichier inexistant dur la carte sd");
 		}
 		BufferedReader reader = null;
 		try {

@@ -35,7 +35,7 @@ public class EditActivity extends Activity {
 
 		final EditText editText1 = (EditText) findViewById(R.id.editText1);
 
-		editText1.setText("\'begin{}\'end{}");
+		editText1.setText("\\begin{}\\end{}");
 
 		// TODO mettre balise begin/end
 
@@ -144,6 +144,7 @@ public class EditActivity extends Activity {
 			 * Intent intentopen = new Intent(EditorActivity.this,
 			 * FileChooserActivity.class); startActivity(intentopen);
 			 */
+			RemoteCompiler.compile("Test");
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -154,7 +155,7 @@ public class EditActivity extends Activity {
 		File sdLien = Environment.getExternalStorageDirectory();
 		File monFichier = new File(sdLien + "/" + nomFichier);
 		if (!monFichier.exists()) {
-			throw new RuntimeException("Fichier in�xistant dur la carte sd");
+			throw new RuntimeException("Fichier inexistant dur la carte sd");
 		}
 		BufferedReader reader = null;
 		try {
