@@ -34,9 +34,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="30dp"
+        android:layout_below="@+id/button4"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
     
 </RelativeLayout>

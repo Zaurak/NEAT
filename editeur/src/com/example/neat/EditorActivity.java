@@ -42,9 +42,9 @@ public class EditorActivity extends Activity {
 		
 		Intent intent = getIntent();
         if (intent != null) {
-    	    editText1.setText("\'begin{}"+lireFichier(intent.getStringExtra(EXTRA_FILENAME))+"\'end{}");
+    	    editText1.setText(/*"\'begin{}"+*/lireFichier(intent.getStringExtra(EXTRA_FILENAME))/*+"\'end{}"*/);
         }
-		
+    
 		Button bold = (Button)findViewById(R.id.button4);
 		bold.setOnClickListener(new OnClickListener(){
 
@@ -141,15 +141,6 @@ public class EditorActivity extends Activity {
 		case R.id.compile:
 			/*Intent intentopen = new Intent(EditorActivity.this, FileChooserActivity.class);
 			startActivity(intentopen);*/
-			return true;
-		case R.id.bold:
-			TextBold(editText1);
-			return true;
-		case R.id.italic:
-			TextItalic(editText1);
-			return true;
-		case R.id.underline:
-			TextUnderline(editText1);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

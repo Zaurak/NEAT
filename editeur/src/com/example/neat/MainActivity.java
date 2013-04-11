@@ -20,8 +20,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		final TextView input = new TextView(this);
-		input.setText("temp pour test");
+		final String input = "temp pour test";
 		
 		Button newdoc = (Button)findViewById(R.id.button3);
 		newdoc.setOnClickListener(new OnClickListener(){
@@ -60,7 +59,7 @@ public class MainActivity extends Activity {
 			//startActivity(intent);
 			AlertDialog builder = new AlertDialog.Builder(MainActivity.this)
 		  	.setTitle("Tutorial")
-		  	.setView(input)
+		  	.setMessage(input)
 		  	.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
 		  		@Override
 		  		public void onClick(DialogInterface dialog, int which) {

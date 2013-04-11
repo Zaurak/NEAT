@@ -141,15 +141,6 @@ final String EXTRA_FILENAME = "filename";
 			/*Intent intentopen = new Intent(EditorActivity.this, FileChooserActivity.class);
 			startActivity(intentopen);*/
 			return true;
-		case R.id.bold:
-			TextBold(editText1);
-			return true;
-		case R.id.italic:
-			TextItalic(editText1);
-			return true;
-		case R.id.underline:
-			TextUnderline(editText1);
-			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

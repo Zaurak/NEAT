@@ -12,16 +12,5 @@
         android:id="@+id/compile"
         android:showAsAction="ifRoom"
         android:title="compile"/>    
-    <item
-        android:id="@+id/bold"
-        android:showAsAction="ifRoom"
-        android:title="bold"/>
-    <item
-        android:id="@+id/italic"
-        android:showAsAction="ifRoom"
-        android:title="italic"/>
-    <item
-        android:id="@+id/underline"
-        android:showAsAction="ifRoom"
-        android:title="underline"/>
+
     </menu>
